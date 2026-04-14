@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareSync | Modern Hospital Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>CareSync</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-view="dashboard">
+                    <span class="icon">📊</span> Dashboard
+                </button>
+                <button class="nav-btn" data-view="patients">
+                    <span class="icon">👥</span> Patients
+                </button>
+                <button class="nav-btn" data-view="appointments">
+                    <span class="icon">📅</span> Appointments
+                </button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h2 id="view-title">Dashboard</h2>
+                <div class="user-profile">
+                    <div class="avatar">DR</div>
+                    <span>Dr. Smith</span>
+                </div>
+            </header>
+
+            <section id="dashboard-view" class="view-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Patients</h3>
+                        <p id="stat-total-patients">0</p>
+                    </div>
+                    <div class="stat-card pulse">
+                        <h3>Today's Appts</h3>
+                        <p id="stat-today-appts">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Reports</h3>
+                        <p>12</p>
+                    </div>
+                </div>
+                
+                <div class="recent-activity highlight">
+                    <h3>Recent Appointments</h3>
+                    <div id="recent-appointments-list" class="activity-list"></div>
+                </div>
+                <div class="recent-activity highlight">
+    <h3>Recent Appointments</h3>
+    <div id="recent-appointments-list" class="activity-list"></div>
+</div>
+
+<!-- ✅ YAHAN PASTE KARNA HAI -->
+<div class="hospital-types">
+    <h3>Hospital Departments</h3>
+    <div class="hospital-grid">
+
+        <div class="hospital-card">
+            <img src="images/cardiology.jpg">
+            <p>Cardiology</p>
+        </div>
+
+        <div class="hospital-card">
+            <img src="images/neurology.jpg">
+            <p>Neurology</p>
+        </div>
+
+        <div class="hospital-card">
+            <img src="images/emergency.jpg">
+            <p>Emergency</p>
+        </div>
+
+        <div class="hospital-card">
+            <img src="images/pediatrics.jpg">
+            <p>Pediatrics</p>
+        </div>
+
+    </div>
+</div>
+            </section>
+
+            <section id="patients-view" class="view-section">
+                <div class="section-header">
+                    <h3>Patient Records</h3>
+                    <button class="primary-btn" id="add-patient-btn">+ Add Patient</button>
+                </div>
+                <div class="patient-grid" id="patient-list"></div>
+            </section>
+
+            <section id="appointments-view" class="view-section">
+                <div class="section-header">
+                    <h3>Schedule Appointment</h3>
+                </div>
+                <div class="appointment-form card">
+                    <form id="book-appointment-form">
+                        <div class="form-group">
+                            <label>Patient</label>
+                            <select id="appointment-patient-select" required>
+                                <option value="">Select Patient</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+    <label>Doctor</label>
+    <select id="appointment-doctor" required>
+        <option value="">Select Doctor</option>
+        <option value="Dr. Smith">Dr. Smith (Cardiologist)</option>
+        <option value="Dr. Sharma">Dr. Sharma (Neurologist)</option>
+        <option value="Dr. Patel">Dr. Patel (Orthopedic)</option>
+        <option value="Dr. Khan">Dr. Khan (Dermatologist)</option>
+    </select>
+</div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="appointment-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" id="appointment-time" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Schedule Now</button>
+                    </form>
+                </div>
+                <div class="appointment-list mt-4" id="appointment-records"></div>
+            </section>
+        </main>
+    </div>
+
+    <div id="patient-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h2>New Patient Record</h2>
+            <form id="add-patient-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="patient-name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="patient-age" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="patient-gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Condition / Complaint</label>
+                    <textarea id="patient-condition" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Patient Photo</label>
+                    <div class="file-upload" id="file-upload-zone">
+                        <input type="file" id="patient-photo" accept="image/*" hidden>
+                        <div class="upload-placeholder">
+                            <span class="icon">📸</span>
+                            <p>Click or Drag to Upload</p>
+                        </div>
+                        <img id="photo-preview" class="hidden">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Save Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="image-modal" class="modal">
+        <div class="modal-content glass preview-modal">
+            <span class="close-modal" id="close-image-modal">&times;</span>
+            <img id="full-res-image" src="" alt="Patient Preview">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
